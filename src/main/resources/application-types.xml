@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="flight_json" format="json">
+      <types:example format="json" location="examples/flight-example.json"/>
+    </types:type>
+    <types:type name="flights_json" format="json">
+      <types:example format="json" location="examples/flights-example.json"/>
+    </types:type>
+    <types:type name="flights_xml" format="xml">
+      <types:example format="xml" element="{http://soap.training.mulesoft.com/}listAllFlightsResponse" location="examples/flights-example.xml"/>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#825386b1-cadc-4c5c-9edc-3e47cd503a88">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="flight_json"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#5730146e-111e-4f27-9dff-3ccb5b79a3b3">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="flights_json"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#b7705f2d-bcce-4ef2-b2c3-25bd5139cb81">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="flights_xml"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
